@@ -16,7 +16,8 @@ var savageclose = document.getElementById('sv-menu-control'),
     svusrctrl = document.getElementById('sv-user-control'),
     menudropdown = document.querySelectorAll('.sv-menu-dropbox'),
     tiledropdown = document.querySelectorAll('.sv-tile-drop'),
-    tilegroup = document.getElementById('sv-menu-tilegroup'),
+    tilegroup = document.getElementById('sv-menu-tilegroup'), 
+    tileMenu = document.querySelectorAll('.sv-menu-tile'),
     tileItem = document.querySelectorAll('.sv-menu-subgroup');
 
 //Burger Menu event
@@ -29,6 +30,7 @@ savageclose.addEventListener('click', function () {
         svQuickLink.classList.toggle('off');
         document.body.classList.toggle('scrolloff');
         svQuickLink.classList.remove('on');
+        tileMenus();
     } else {
         this.classList.remove('back');
         tilegroup.style.left = 0;
@@ -48,7 +50,6 @@ svQuickLink.addEventListener('click', function () {
     this.classList.toggle('on');
 });
 
-//dropdown desktop positions
 //Close the user control dropdown menu if the user clicks outside of it
 document.onclick = function (event) {
     if (!event.target.matches('.sv-welcomeusr')) {
@@ -59,13 +60,39 @@ document.onclick = function (event) {
     }
 };
 
-tiledropdown.forEach(function () {
-    console.log(tiledropdown.length);
-    console.log(tileItem[1].getBoundingClientRect().top);
-});
+//dropdown desktop positions
+function tileMenus() {
+    for (var i = 0; i < tileItem.length; i++) {
+        //var divOffset = tilePos(tileMenu[i]),
+        var divOffset = tileItem[i].getBoundingClientRect(),
+        divofLeft = divOffset.left, divofTop = divOffset.top, divofWidth = divOffset.width, divofHeight = divOffset.height;
+        var childElm = tileItem[i].querySelector('.sv-menu-dropbox');
+        childElm.style.left = divofLeft + (childElm.clientWidth / 2) + 'px';
+        childElm.style.top = divofTop + 30 + 'px';
+        console.log(childElm.clientWidth);
+        //tileDrop(divofLeft, divofTop);
+    }
+    
+}
+//function tileDrop(divofLeft, divofTop) {
+//    console.log('after:'+divofLeft, divofTop);
+//    for (var i = 0; i < tiledropdown.length; i++) {
+//        tiledropdown[i].style.left = divofLeft + 'px';
+//        tiledropdown[i].style.top = divofTop + 'px';
+//    }
+//}
+//Finding Tile Offsets
+/*function tilePos(tileMenu) {    
+    var rect = tileMenu.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft, width }    
+}*/
 
-var tilemenu = document.querySelectorAll('.sv-menu-tile');
+//Knowing Events for Mobile and Desktop
 var touchevent = '';
+
+//Responsive events
 var onResizing = function (event) {
     var winW = window.innerWidth;
     if (winW <= 767) {
@@ -78,7 +105,7 @@ var onResizing = function (event) {
     }
  
     menuevents(touchevent);
- }
+}
 window.onload = onResizing
 window.onresize = onResizing;
 
@@ -100,6 +127,7 @@ function menuevents(touchevent) {
 function showTile(e) {    
     this.classList.add("open");
     this.parentElement.style.left = 0;
+    var childElm = this.children.length; console.log(childElm);    
 }
 function slideTile(e) {
     var dataLabel = this.querySelectorAll('[data-label]');   
@@ -108,7 +136,6 @@ function slideTile(e) {
     savageclose.classList.add('back');
     savageclose.setAttribute('data-label', dataLabel[0].getAttribute('data-label'));
     this.parentElement.style.left = -window.innerWidth + 'px';
-    //console.log(this.lastChild.offsetLeft, this.lastChild.offsetTop);
 }
 function hideTile(e) {    
     this.parentElement.style.left = 0;

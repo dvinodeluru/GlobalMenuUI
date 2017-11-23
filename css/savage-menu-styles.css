@@ -488,7 +488,7 @@ body {
                         background-size: 55px;
                     }
 
-                .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.open > .sv-tile-title {
+                .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile:hover > .sv-tile-title {
                     transform: scale(1.1);
                     background-color: rgba(0, 157, 220, 0.4);
                 }
@@ -588,14 +588,12 @@ body {
         top: auto;
         background-color: #0062A7;
         width:auto;
-        margin-top:25px;
-        /*transform:scale(1);
-        transition: all 0.2s;*/
+        transition: all 0.2s;
     }
-    /*.sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile.sv-menu-subgroup.open > .sv-menu-dropbox {
+   .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile.sv-menu-subgroup.open > .sv-menu-dropbox {
         margin-top:35px;
         transform: scale(1.1);
-    }*/
+    }
         .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup,
         .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup:nth-child(2n) {
             padding: 0;

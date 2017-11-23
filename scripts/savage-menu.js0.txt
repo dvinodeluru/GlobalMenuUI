@@ -16,7 +16,7 @@ var savageclose = document.getElementById('sv-menu-control'),
     svusrctrl = document.getElementById('sv-user-control'),
     menudropdown = document.querySelectorAll('.sv-menu-dropbox'),
     tiledropdown = document.querySelectorAll('.sv-tile-drop'),
-    tilegroup = document.getElementById('sv-menu-tilegroup'), tileMenu = document.querySelectorAll('.sv-menu-tile'),
+    tilegroup = document.getElementById('sv-menu-tilegroup'),
     tileItem = document.querySelectorAll('.sv-menu-subgroup');
 
 //Burger Menu event
@@ -29,7 +29,6 @@ savageclose.addEventListener('click', function () {
         svQuickLink.classList.toggle('off');
         document.body.classList.toggle('scrolloff');
         svQuickLink.classList.remove('on');
-        tileMenus();
     } else {
         this.classList.remove('back');
         tilegroup.style.left = 0;
@@ -49,6 +48,7 @@ svQuickLink.addEventListener('click', function () {
     this.classList.toggle('on');
 });
 
+//dropdown desktop positions
 //Close the user control dropdown menu if the user clicks outside of it
 document.onclick = function (event) {
     if (!event.target.matches('.sv-welcomeusr')) {
@@ -59,37 +59,12 @@ document.onclick = function (event) {
     }
 };
 
-//dropdown desktop positions
-function tileMenus() {
-    for (var i = 0; i < tileMenu.length; i++) {
-        var divOffset = tilePos(tileMenu[i]),
-        divofLeft = divOffset.left, divofTop = divOffset.top;
-        tileDrop(divofLeft, divofTop);
-    }
-    
-}
-function tileDrop(divofLeft, divofTop) {
-    for (var i = 0; i < tiledropdown.length; i++) {
-        tiledropdown[i].style.left = divofLeft + 'px';
-        tiledropdown[i].style.top = divofTop + 'px';
-    }
-}
-//Finding Tile Offsets
-function tilePos(tileMenu) {    
-        var rect = tileMenu.getBoundingClientRect(),
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        return { top: rect.top + scrollTop, left: rect.left + scrollLeft }    
-}
-
-//Knowing Events for Mobile and Desktop
+var tilemenu = document.querySelectorAll('.sv-menu-tile');
 var touchevent = '';
-
-//Responsive events
 var onResizing = function (event) {
     var winW = window.innerWidth;
     if (winW <= 767) {
-        tilegroup.appendChild(svuserbox);
+        svmenuslider.appendChild(svuserbox);
         tilegroup.style.width = winW;
         touchevent = 'click';
     } else {
@@ -118,17 +93,21 @@ function menuevents(touchevent) {
 }
 
 function showTile(e) {    
+    console.log(this.offsetTop);
     this.classList.add("open");
     this.parentElement.style.left = 0;
-    var childElm = this.children.length; console.log(childElm);    
+    //this.lastChild.style.top = this.offsetTop + 205;
 }
 function slideTile(e) {
-    var dataLabel = this.querySelectorAll('[data-label]');   
+    var dataLabel = this.children.children; console.log(dataLabel);
+     dataLabel = dataLabel.querySelectorAll('[data-label]');
+    console.log(dataLabel);
     this.classList.add("open");
     var winW = window.innerWidth;
     savageclose.classList.add('back');
-    savageclose.setAttribute('data-label', dataLabel[0].getAttribute('data-label'));
+    savageclose.setAttribute('data-label', '');
     this.parentElement.style.left = -window.innerWidth + 'px';
+    console.log(this.lastChild.offsetLeft, this.lastChild.offsetTop);
 }
 function hideTile(e) {    
     this.parentElement.style.left = 0;
