@@ -1,6 +1,9 @@
+body {
+    font-family: "Verdana"
+}
+
 .savage-header {
     background: #004990;
-    display: block;
 }
 
 .savage-header .navbar-brand {
@@ -12,7 +15,7 @@
     text-transform: uppercase;
     color: #fff;
     vertical-align: bottom;
-    padding-left:15px;
+	padding-left:15px;
 }
 
 .savage-header .navbar-brand .sub-logo:first-letter {
@@ -33,7 +36,7 @@
     margin: 10px 0;
 }
 .siteActions li > a{
-    padding: 0 10px; color:#fff;
+	padding: 0 10px; color:#fff;
 }
 .navbar-inverse .navbar-nav.siteActions>li>a {
     color: #fff;
@@ -75,11 +78,11 @@
     border: 0;
     box-shadow: none;
 }
-.dropdown-menu{background:#009ddc none;}
+
 .nav li:hover>ul {
     display: block;
 }
-.dropdown-menu .divider{background: #fff none;    margin: 4px 30px;}
+
 .nav li>ul>li:hover>a {
     background: #7ad4ff none;
 }
@@ -109,7 +112,8 @@
 .btn:hover {
     color: #fff;
 }
-.btn-warning {
+
+.btn-orange {
     background-color: #f89720;
     border-color: #f89720;
 }
@@ -128,18 +132,9 @@
     padding-left: 30px;
 }
 
-
 .search-icon-addon {
     border-radius: 20px;
 }
-/*
-input#search {
-    padding: 5px 10px;
-    box-shadow: none;
-    border: 1px solid #aaa;
-    border-radius: 20px;
-}
-*/
 
 .form-control[disabled],
 fieldset[disabled] .form-control {
@@ -150,50 +145,6 @@ fieldset[disabled] .form-control {
 
 .open>.custom-select {
     background: transparent!important;
-}
-.list {
-    cursor: pointer;
-}
-
-::-ms-clear {
-   display: none;
-}
-
-::-ms-reveal {
-   display: none;
-}
-
-input[type=checkbox]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(1.75); /* IE */
-  -moz-transform: scale(1.75); /* FF */
-  -webkit-transform: scale(1.75); /* Safari and Chrome */
-  -o-transform: scale(1.75); /* Opera */
-  margin-left: 5px;
-}
-
-input[type=radio]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
-  margin-left: 5px;
-}
-
-div.checkbox > .checkbox-addon{
-    margin-left:6px;
-    margin-top:0px;
-}
-
-div.checkbox > label{
-    margin-top:5px;
-}
-
-div.checkbox + label{
-    margin-top:5px;
 }
 
 @media only screen and (min-width:768px){
