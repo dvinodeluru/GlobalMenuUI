@@ -1,4 +1,4 @@
-html,
+﻿html,
 body {
     padding: 0;
     margin: 0;
@@ -45,6 +45,7 @@ body {
         color: #fff;
         display: block;
         padding: 5px 0;
+        text-decoration:none;
     }
 
 .savage-header-bar,
@@ -83,7 +84,7 @@ body {
 .sv-menu-box .sv-menu-control {
     position: relative;
     padding: 6px 0;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .savage-header-bar.open .sv-menu-box .sv-menu-control:after {
@@ -159,7 +160,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-   display: block;
+    display: block;
 }
 
 .sv-menu-box .sv-logobox {
@@ -264,7 +265,7 @@ body {
         margin: 15px 10px;
         font-size: 16px;
         background-size: 30px;
-        text-align:left;
+        text-align: left;
     }
 
         .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile .sv-tile-title {
@@ -314,8 +315,8 @@ body {
         text-align: left;
         top: 0;
         left: 100%;
-        padding: 40px 30px;
-        width:100%;
+        padding: 20px 30px;
+        width: 100%;
     }
 
         .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup {
@@ -453,7 +454,6 @@ body {
     }
 
         .sv-menu-slider .sv-menu-tilegroup {
-            
             list-style: none;
             padding: 0;
             margin: 0;
@@ -488,6 +488,7 @@ body {
                         background-size: 55px;
                     }
 
+                .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.open > .sv-tile-title,
                 .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile:hover > .sv-tile-title {
                     transform: scale(1.1);
                     background-color: rgba(0, 157, 220, 0.4);
@@ -512,10 +513,10 @@ body {
                 .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.sv-menu-subgroup > .sv-tile-title:after {
                     content: '';
                     position: absolute;
-                    bottom: -16px;
+                    bottom: -15px;
                     left: 0;
                     right: 0;
-                    height: 15px;
+                    height: 16px;
                     display: none;
                 }
 
@@ -527,7 +528,7 @@ body {
                     left: 50%;
                     margin: 0;
                     top: auto;
-                    display:block;
+                    display: block;
                     right: auto;
                     transform: translate(-50%, 0);
                     border-left: 15px solid transparent;
@@ -584,20 +585,21 @@ body {
     .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox {
         border-radius: 10px;
         padding: 35px 40px;
-        left: 30px;
-        top: auto;
+        left: 0;
         background-color: #0062A7;
-        width:auto;
-        transition: all 0.2s;
+        width: auto;
+        /*transition: all 0.2s;*/
     }
-   .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile.sv-menu-subgroup.open > .sv-menu-dropbox {
-        margin-top:35px;
+
+    /*.sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile.sv-menu-subgroup.open > .sv-menu-dropbox {
+        margin-top: 35px;
         transform: scale(1.1);
+    }*/
+
+    .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup,
+    .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup:nth-child(2n) {
+        padding: 0;
     }
-        .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup,
-        .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup:nth-child(2n) {
-            padding: 0;
-        }
 
     .sv-quicklink-bar ul {
         list-style: none;

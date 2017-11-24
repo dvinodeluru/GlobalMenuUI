@@ -1,6 +1,6 @@
-/* 
+﻿/* 
     
-    Savage Menu 
+    Savage Menu App
     Version 1.0
 
 */
@@ -16,9 +16,10 @@ var savageclose = document.getElementById('sv-menu-control'),
     svusrctrl = document.getElementById('sv-user-control'),
     menudropdown = document.querySelectorAll('.sv-menu-dropbox'),
     tiledropdown = document.querySelectorAll('.sv-tile-drop'),
-    tilegroup = document.getElementById('sv-menu-tilegroup'), 
+    tilegroup = document.getElementById('sv-menu-tilegroup'),
     tileMenu = document.querySelectorAll('.sv-menu-tile'),
-    tileItem = document.querySelectorAll('.sv-menu-subgroup');
+    tileItem = document.querySelectorAll('.sv-menu-subgroup'),
+    touchevent = '';
 
 //Burger Menu event
 savageclose.addEventListener('click', function () {
@@ -30,12 +31,12 @@ savageclose.addEventListener('click', function () {
         svQuickLink.classList.toggle('off');
         document.body.classList.toggle('scrolloff');
         svQuickLink.classList.remove('on');
-        tileMenus();
+        resetTileMenus();
     } else {
         this.classList.remove('back');
         tilegroup.style.left = 0;
         this.setAttribute('data-label', 'Menu');
-        for (var i = 0; i < tileItem.length; i++) { tileItem[i].classList.remove('open'); }
+        resetTileMenus();
     }
 });
 
@@ -64,37 +65,26 @@ document.onclick = function (event) {
 function tileMenus() {
     for (var i = 0; i < tileItem.length; i++) {
         //var divOffset = tilePos(tileMenu[i]),
+        //tileItem[i].removeEventListener("click mouseover mouseout", hideTile);
         var divOffset = tileItem[i].getBoundingClientRect(),
         divofLeft = divOffset.left, divofTop = divOffset.top, divofWidth = divOffset.width, divofHeight = divOffset.height;
         var childElm = tileItem[i].querySelector('.sv-menu-dropbox');
-        childElm.style.left = divofLeft + (childElm.clientWidth / 2) + 'px';
-        childElm.style.top = divofTop + 30 + 'px';
-        console.log(childElm.clientWidth);
-        //tileDrop(divofLeft, divofTop);
+        childElm.style.left = divofLeft + 'px';
+        childElm.style.top = divofTop + 50 + 'px';
+        console.log(divOffset + ' ' + childElm.clientHeight);
     }
-    
 }
-//function tileDrop(divofLeft, divofTop) {
-//    console.log('after:'+divofLeft, divofTop);
-//    for (var i = 0; i < tiledropdown.length; i++) {
-//        tiledropdown[i].style.left = divofLeft + 'px';
-//        tiledropdown[i].style.top = divofTop + 'px';
-//    }
-//}
-//Finding Tile Offsets
-/*function tilePos(tileMenu) {    
-    var rect = tileMenu.getBoundingClientRect(),
-    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft, width }    
-}*/
-
-//Knowing Events for Mobile and Desktop
-var touchevent = '';
+function resetTileMenus() {
+    for (var i = 0; i < tileItem.length; i++) { tileItem[i].classList.remove('open'); tileItem[i].querySelector('.sv-menu-dropbox').removeAttribute('style'); }
+}
 
 //Responsive events
 var onResizing = function (event) {
     var winW = window.innerWidth;
+    savageclose.classList.remove('back');
+    tilegroup.removeAttribute('style');
+    resetTileMenus();
+    for (var i = 0; i < tileItem.length; i++) { tileItem[i].removeEventListener("click mouseover mouseout", hideTile, false); }
     if (winW <= 767) {
         tilegroup.appendChild(svuserbox);
         tilegroup.style.width = winW;
@@ -103,7 +93,7 @@ var onResizing = function (event) {
         svusrctrl.insertBefore(svuserbox, svusrctrl.childNodes[0]);
         touchevent = 'mouseover';
     }
- 
+
     menuevents(touchevent);
 }
 window.onload = onResizing
@@ -112,32 +102,37 @@ window.onresize = onResizing;
 function menuevents(touchevent) {
     if (touchevent == "click") {//mobile
         for (var i = 0; i < tileItem.length; i++) {
-            tileItem[i].removeEventListener("mouseover mouseout", hideTile);
-            tileItem[i].addEventListener("click", slideTile, false);
+            tileItem[i].removeEventListener("mouseover mouseout", slideTile, true);
+            tileItem[i].addEventListener("click", slideTile, true);
         }
     } else {
         for (var i = 0; i < tileItem.length; i++) { //desktop
-            tileItem[i].removeEventListener("click", hideTile);
             tileItem[i].addEventListener("mouseover", showTile, false);
             tileItem[i].addEventListener("mouseout", hideTile, false);
         }
     }
 }
 
-function showTile(e) {    
+function showTile(e) {
     this.classList.add("open");
     this.parentElement.style.left = 0;
-    var childElm = this.children.length; console.log(childElm);    
+    var childElm = this.children.length; console.log(childElm);
+    tileMenus();
+    console.log('mouse hover');
 }
 function slideTile(e) {
-    var dataLabel = this.querySelectorAll('[data-label]');   
+    var dataLabel = this.querySelectorAll('[data-label]');
     this.classList.add("open");
     var winW = window.innerWidth;
     savageclose.classList.add('back');
     savageclose.setAttribute('data-label', dataLabel[0].getAttribute('data-label'));
     this.parentElement.style.left = -window.innerWidth + 'px';
+    this.querySelector('.sv-menu-dropbox').removeAttribute('style');
+    console.log('Click or Touch');
 }
-function hideTile(e) {    
-    this.parentElement.style.left = 0;
+function hideTile(e) {
+    this.parentElement.removeAttribute('style');
     this.classList.remove("open");
+    resetTileMenus();
+    console.log('mouse out');
 }
