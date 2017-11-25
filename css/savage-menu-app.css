@@ -456,8 +456,10 @@ body {
         .sv-menu-slider .sv-menu-tilegroup {
             list-style: none;
             padding: 0;
-            margin: 0;
-            position: relative;
+            left:auto;
+            transition:none;
+            display:inline-block;
+            margin:0 auto;
         }
 
             .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile {
@@ -587,7 +589,7 @@ body {
         padding: 35px 40px;
         left: 0;
         background-color: #0062A7;
-        width: auto;
+        width:auto;
         /*transition: all 0.2s;*/
     }
 

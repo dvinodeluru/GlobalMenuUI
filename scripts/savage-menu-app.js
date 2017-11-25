@@ -103,7 +103,7 @@ function tileMenus() {
         divofLeft = divOffset.left, divofTop = divOffset.top, divofWidth = divOffset.width, divofHeight = divOffset.height;
         var childElm = tileItem[i].querySelector('.sv-menu-dropbox');
         //childElm.style.left = divofLeft + 'px';
-        childElm.style.top = divofTop + 50 + 'px';
+        childElm.style.top = divofTop + 50 + 'px';        
     }
 }
 
@@ -114,7 +114,12 @@ function resetTileMenus() {
 function showTile(e) {
     this.classList.add("open");
     this.parentElement.style.left = 0;
-    var childElm = this.children.length; console.log(childElm);
+    var childElm = this.children[1];
+    var childPos = childElm.getBoundingClientRect();
+    var thisPos = this.getBoundingClientRect();
+    
+    console.log(thisPos);
+
     tileMenus();
 }
 function slideTile(e) {
@@ -130,5 +135,4 @@ function slideTile(e) {
 function hideTile(e) {
     this.parentElement.removeAttribute('style');
     this.classList.remove("open");
-    resetTileMenus();
 }
