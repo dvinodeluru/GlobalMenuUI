@@ -96,17 +96,6 @@ function menuevents(touchevent) {
     }
 }
 
-//dropdown desktop positions
-function tileMenus() {
-    for (var i = 0; i < tileItem.length; i++) {
-        var divOffset = tileItem[i].getBoundingClientRect(),
-        divofLeft = divOffset.left, divofTop = divOffset.top, divofWidth = divOffset.width, divofHeight = divOffset.height;
-        var childElm = tileItem[i].querySelector('.sv-menu-dropbox');
-        //childElm.style.left = divofLeft + 'px';
-        childElm.style.top = divofTop + 50 + 'px';        
-    }
-}
-
 function resetTileMenus() {
     for (var i = 0; i < tileItem.length; i++) { tileItem[i].classList.remove('open'); tileItem[i].querySelector('.sv-menu-dropbox').removeAttribute('style'); }
 }
@@ -114,14 +103,20 @@ function resetTileMenus() {
 function showTile(e) {
     this.classList.add("open");
     this.parentElement.style.left = 0;
-    var childElm = this.children[1];
-    var childPos = childElm.getBoundingClientRect();
-    var thisPos = this.getBoundingClientRect();
-    
-    console.log(thisPos);
-
-    tileMenus();
+    var childElm = this.children[1], childsgl = this.querySelectorAll('.sv-tile-subgroup').length,
+    childPos = childElm.getBoundingClientRect(), 
+    thisPos = this.getBoundingClientRect(); 
+    childElm.style.top = thisPos.top + 50 + 'px';
+    if (this.offsetLeft < (window.innerWidth / 4)) {
+        childElm.style.left = this.offsetLeft + 'px'; 
+        childElm.style.right = "auto";
+    } else if ((this.offsetLeft + thisPos.width) < (window.innerWidth / 4)) {
+        childElm.style.right = (window.innerWidth - (this.offsetLeft + thisPos.width)) - 40 + 'px';
+    } else {
+        childElm.style.left = (childsgl < 5) ? (this.offsetLeft - (childPos.width / 2)) - 40 + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
+    }
 }
+
 function slideTile(e) {
     resetTileMenus();
     var dataLabel = this.querySelectorAll('[data-label]');
@@ -129,10 +124,13 @@ function slideTile(e) {
     var winW = window.innerWidth;
     savageclose.classList.add('back');
     savageclose.setAttribute('data-label', dataLabel[0].getAttribute('data-label'));
-    this.parentElement.style.left = -window.innerWidth + 'px';
+    this.parentElement.style.left = - window.innerWidth + 'px';
     this.querySelector('.sv-menu-dropbox').removeAttribute('style');
 }
+
 function hideTile(e) {
     this.parentElement.removeAttribute('style');
     this.classList.remove("open");
+    var childElm = this.children[1];
+    childElm.removeAttribute('style');
 }

@@ -220,7 +220,7 @@ body {
     }
 
     .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.open > .sv-menu-dropbox,
-    .sv-welcomeusr.open .sv-menu-dropbox,
+    .sv-welcomeusr.open .sv-menu-dropbox, 
     .sv-welcomeusr.open .sv-overlay {
         display: block;
     }
@@ -455,7 +455,7 @@ body {
 
         .sv-menu-slider .sv-menu-tilegroup {
             list-style: none;
-            padding: 0;
+            padding: 0 30px;
             left:auto;
             transition:none;
             display:inline-block;
