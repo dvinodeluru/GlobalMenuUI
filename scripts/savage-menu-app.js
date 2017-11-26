@@ -110,7 +110,7 @@ function showTile(e) {
     if (this.offsetLeft < (window.innerWidth / 4)) {
         childElm.style.left = this.offsetLeft + 'px'; 
         childElm.style.right = "auto";
-    } else if ((this.offsetLeft + thisPos.width) < (window.innerWidth / 4)) {
+    } else if (thisPos.right < (window.innerWidth / 4)) {
         childElm.style.right = (window.innerWidth - (this.offsetLeft + thisPos.width)) - 40 + 'px';
     } else {
         childElm.style.left = (childsgl < 5) ? (this.offsetLeft - (childPos.width / 2)) - 40 + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
