@@ -1,4 +1,5 @@
-﻿html,
+﻿@import url('//fonts.googleapis.com/css?family=Open+Sans');
+html,
 body {
     padding: 0;
     margin: 0;
@@ -8,7 +9,7 @@ body {
 body {
     position: relative;
     height: 100%;
-    font-family: "Open sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
     padding-top: 70px;
 }
 
@@ -19,6 +20,16 @@ body {
     box-sizing: border-box;
 }
 
+.screenOutline {
+position:absolute;
+top:0;bottom:0;left:0;right:0;z-index:1000;box-sizing: border-box; display:none;
+}
+    .screenOutline div {
+        width:33.3%;
+        border:1px solid #b50505;
+        height:100%;box-sizing: border-box;
+        float:left;
+    }
 .scrolloff {
     overflow: hidden;
 }
@@ -384,7 +395,7 @@ body {
         background-image: url('../images/bolt-outline.svg');
     }
 
-@media only screen and (min-width:768px) {
+@media only screen and (min-width:992px) {
     body {
         padding-top: 80px;
     }
@@ -413,7 +424,7 @@ body {
             .sv-menu-box .sv-logobox::after {
                 display: inline-block;
                 vertical-align: bottom;
-                margin-bottom: -4px;
+                margin-bottom: -2px;
                 font-size: 16px;
             }
 
@@ -526,7 +537,7 @@ body {
                 .sv-user-control .sv-welcomeusr.open:after {
                     content: '';
                     position: absolute;
-                    bottom: -16px;
+                    bottom: -15px;
                     left: 50%;
                     margin: 0;
                     top: auto;
@@ -699,7 +710,4 @@ body {
             padding: 5px 0px;
             font-size: 13px;
         }
-}
-
-@media only screen and (min-width:992px) {
 }

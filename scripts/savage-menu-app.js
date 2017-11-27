@@ -55,7 +55,7 @@ svQuickLink.addEventListener('click', function () {
 document.onclick = function (event) {
     if (!event.target.matches('.sv-welcomeusr')) {
         //console.log(event.target);
-        menudropdown.forEach(function (openDropdown) {
+        menudropdown.forEach(function (openDropdown) {      
             svuserbox.classList.contains('open') && svuserbox.classList.remove('open');
         });
     }
@@ -68,7 +68,7 @@ var onResizing = function (event) {
     tilegroup.removeAttribute('style');
     resetTileMenus();
     for (var i = 0; i < tileItem.length; i++) { tileItem[i].removeEventListener("click mouseover mouseout", hideTile, false); }
-    if (winW <= 767) {
+    if (winW <= 991) {
         tilegroup.appendChild(svuserbox);
         tilegroup.style.width = winW;
         touchevent = 'click';
@@ -107,13 +107,12 @@ function showTile(e) {
     childPos = childElm.getBoundingClientRect(), 
     thisPos = this.getBoundingClientRect(); 
     childElm.style.top = thisPos.top + 50 + 'px';
-    if (this.offsetLeft < (window.innerWidth / 4)) {
-        childElm.style.left = this.offsetLeft + 'px'; 
-        childElm.style.right = "auto";
-    } else if (thisPos.right < (window.innerWidth / 4)) {
-        childElm.style.right = (window.innerWidth - (this.offsetLeft + thisPos.width)) - 40 + 'px';
+    if (this.offsetLeft < (tilegroup.clientWidth / 3)) {
+        childElm.style.left = (childsgl < 5) ? this.offsetLeft + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
+    } else if (thisPos.right < (tilegroup.clientWidth / 3)) {
+        childElm.style.right = (childsgl < 5) ? (tilegroup.clientWidth - (this.offsetLeft + thisPos.width)) - 40 + 'px': childElm.style.left = childElm.style.right = 40 + 'px';
     } else {
-        childElm.style.left = (childsgl < 5) ? (((this.offsetLeft + childPos.width) / 2) - thisPos.width) - 40 + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
+        childElm.style.left = (childsgl < 5) ? ((this.offsetLeft + (thisPos.width / 2)) - (childPos.width / 2)) + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
     }
 }
 
@@ -129,8 +128,10 @@ function slideTile(e) {
 }
 
 function hideTile(e) {
-    this.parentElement.removeAttribute('style');
-    this.classList.remove("open");
-    var childElm = this.children[1];
-    childElm.removeAttribute('style');
+    //if (!event.target.matches('.sv-tile-drop')) {
+        this.parentElement.removeAttribute('style');
+        this.classList.remove("open");
+        var childElm = this.children[1];
+        childElm.removeAttribute('style');
+    //}
 }
