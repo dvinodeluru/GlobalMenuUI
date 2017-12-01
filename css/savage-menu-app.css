@@ -9,8 +9,7 @@ body {
 body {
     position: relative;
     height: 100%;
-    font-family:  "Open Sans", sans-serif;
-    padding-top: 70px;
+    font-family: "Open Sans", sans-serif;
 }
 
 [class^="savage-"],
@@ -46,7 +45,7 @@ body {
         color: #fff;
         display: block;
         padding: 5px 0;
-        text-decoration:none;
+        text-decoration: none;
     }
 
 .savage-header-bar,
@@ -62,7 +61,6 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 70px;
     z-index: 101;
     transition: height 0.2s;
 }
@@ -70,6 +68,7 @@ body {
     .savage-header-bar.open {
         height: 100%;
     }
+
 
 .sv-container {
     max-width: 1170px;
@@ -80,6 +79,11 @@ body {
     padding: 20px 30px;
     font-size: 16px;
     font-weight: bold;
+    transition: padding 0.2s;
+}
+
+.savage-header-bar.scrollOn .sv-menu-header {
+    padding: 5px 30px;
 }
 
 .sv-menu-box .sv-menu-control {
@@ -170,20 +174,35 @@ body {
 
     .sv-menu-box .sv-logobox img {
         height: 20px;
+        transition: height 0.2s;
     }
 
-    .sv-menu-box .sv-logobox:after {
-        content: attr(data-logo-title);
-        font-weight: normal;
-        font-size: 10px;
-        display: block;
-        margin-top: 5px;
-    }
+.savage-header-bar.scrollOn .sv-menu-box .sv-logobox img {
+    height: 15px;
+}
+
+.sv-menu-box .sv-logobox:after {
+    content: attr(data-logo-title);
+    font-weight: normal;
+    font-size: 10px;
+    display: block;
+    margin-top: 5px;
+    transition: margin-top 0.2s;
+}
+
+.savage-header-bar.scrollOn .sv-menu-box .sv-logobox:after {
+    margin-top: 0px;
+}
 
 .sv-action-tools {
     position: absolute;
     top: 24px;
     left: 30px;
+    transition: top 0.2s;
+}
+
+.savage-header-bar.scrollOn .sv-menu-box .sv-action-tools {
+    top: 10px;
 }
 
 .sv-user-control {
@@ -221,7 +240,7 @@ body {
     }
 
     .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.open > .sv-menu-dropbox,
-    .sv-welcomeusr.open .sv-menu-dropbox, 
+    .sv-welcomeusr.open .sv-menu-dropbox,
     .sv-welcomeusr.open .sv-overlay {
         display: block;
     }
@@ -368,6 +387,7 @@ body {
             color: #fff;
             font-size: 13px;
             display: block;
+            white-space: nowrap;
         }
 
             .sv-tile-subgroup ul > li > a:hover {
@@ -386,13 +406,9 @@ body {
     }
 
 @media only screen and (min-width:992px) {
-    body {
-        padding-top: 80px;
-    }
 
     .savage-header-bar {
         background-color: #004990;
-        height: 80px;
     }
 
     .sv-menu-box {
@@ -425,6 +441,10 @@ body {
             padding-top: 4px;
         }
 
+    .savage-header-bar.scrollOn .sv-menu-box .sv-logobox img {
+        height: 30px;
+    }
+
     .sv-action-tools,
     .sv-user-control,
     .sv-welcomeusr,
@@ -445,8 +465,8 @@ body {
         height: 18px;
     }
 
-    .savage-header-bar .sv-menu-header {
-        padding: 20px 30px;
+    .savage-header-bar.scrollOn .sv-menu-header {
+        padding: 5px 30px;
     }
 
     .sv-menu-slider {
@@ -457,17 +477,17 @@ body {
         .sv-menu-slider .sv-menu-tilegroup {
             list-style: none;
             padding: 0 30px;
-            left:auto;
-            transition:none;
-            display:inline-block;
-            margin:0 auto;
+            left: auto;
+            transition: none;
+            display: inline-block;
+            margin: 0 auto;
         }
 
 
-            .sv-menu-slider .sv-menu-tilegroup.tileOn{
+            .sv-menu-slider .sv-menu-tilegroup.tileOn {
                 padding: 0 10px;
             }
-            
+
             .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile {
                 width: 164px;
                 height: 164px;
@@ -595,73 +615,96 @@ body {
         padding: 35px 40px;
         left: 0;
         background-color: #0062A7;
-        width:auto;
-        /*transition: all 0.2s;*/
+        width: auto;
     }
 
-    /*.sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile.sv-menu-subgroup.open > .sv-menu-dropbox {
-        margin-top: 35px;
-        transform: scale(1.1);
-    }*/
+        .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup,
+        .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup:nth-child(2n) {
+            padding: 0;
+        }
 
-    .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup,
-    .sv-menu-slider .sv-menu-tilegroup > .sv-menu-tile > .sv-menu-dropbox .sv-tile-subgroup:nth-child(2n) {
-        padding: 0;
-    }
-
-    .sv-quicklink-bar ul {
+    .sv-quicklink-bar .sv-quicklink-menu {
         list-style: none;
         padding: 0;
         margin: 15px 0 -15px;
     }
 
-        .sv-quicklink-bar ul > li {
-            display: inline-block;
-            margin: 0 15px 0 0;
-            position: relative;
+    .savage-header-bar.scrollOn .sv-quicklink-bar .sv-quicklink-menu {
+        margin: 5px 0 -5px;
+    }
+
+    .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown {
+        display: inline-block;
+        margin: 0 15px 0 0;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown > a {
+            color: #fff;
+            text-decoration: none!important;
+            display: block;
+            padding: 5px 10px;
+            font-weight: normal;
+            white-space: nowrap;
         }
 
-            .sv-quicklink-bar ul > li > a {
-                color: #fff;
-                text-decoration: none!important;
-                display: block;
-                padding: 5px 10px;
-                font-weight: normal;
-            }
-
-    .sv-quicklink-bar li > ul {
+    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown > .sv-quicklink-dropdown-menu {
         display: none;
         position: absolute;
         background: #004990 none;
         min-width: 180px;
+        border-radius: 15px;
+        padding: 15px 20px;
+        list-style: none;
+        margin-top: 14px;
+        left: 50%;
+        transform: translate(-50%,0);
+    }
+
+    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:first-child > .sv-quicklink-dropdown-menu {
+        left: 0%;
+        transform: translate(0%,0);
+    }
+
+    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:hover:after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        right: 0;
+        height: 15px;
+    }
+
+    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:hover:before {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
         margin: 0;
+        display: block;
+        right: auto;
+        transform: translate(-50%, 0);
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid #004990;
     }
 
-        .sv-quicklink-bar li > ul > li > ul {
-            top: 0;
-            left: 100%;
-            margin-top: 0;
-        }
-
-        .sv-quicklink-bar li > ul > li,
-        .sv-quicklink-bar li:hover > ul {
-            display: block;
-            margin: 0;
-        }
-
-            .sv-quicklink-bar li > ul > li > a:hover {
-                background: #009ddc none;
-            }
-
-    .sv-quicklink-dropdown-submenu > a:after {
-        content: "\203A";
-        float: right;
-        width: 0;
-        height: 0;
-        margin-top: -10px;
-        margin-right: 10px;
-        font-size: 24px;
+    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:hover .sv-quicklink-dropdown-menu {
+        display: block;
     }
+
+    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown .sv-quicklink-dropdown-menu a {
+        display: block;
+        color: #fff;
+        white-space: nowrap;
+        font-weight: normal;
+        line-height: 2em;
+    }
+
+        .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown .sv-quicklink-dropdown-menu a:hover {
+            text-decoration: none;
+        }
 
     .sv-welcomeuser:before {
         content: 'Hi, ';

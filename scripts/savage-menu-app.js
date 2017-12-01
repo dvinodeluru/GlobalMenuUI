@@ -7,7 +7,7 @@
 
 "use strict";
 
-var namespaceCreator = function () {
+var menuNamespaceCreator = function () {
     //private properties
     var savageclose = document.getElementById('sv-menu-control'),
         svmenubox = document.getElementById('sv-menu-box'),
@@ -27,7 +27,6 @@ var namespaceCreator = function () {
 
     //Burger Menu event
     savageclose.addEventListener('click', function () {
-        console.log(this.classList.contains('back'));
         if (!this.classList.contains('back')) {
             this.classList.toggle('open');
             savageMenuSlider.classList.toggle('open');
@@ -35,6 +34,7 @@ var namespaceCreator = function () {
             svQuickLink.classList.toggle('off');
             document.body.classList.toggle('scrolloff');
             svQuickLink.classList.remove('on');
+            document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
         } else {
             this.classList.remove('back');
             tilegroup.style.left = 0;
@@ -51,6 +51,7 @@ var namespaceCreator = function () {
     svQuickLink.addEventListener('click', function () {
         quicklinkbar.classList.toggle('open');
         this.classList.toggle('on');
+        document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
     });
 
     //Close the user control dropdown menu if the user clicks outside of it
@@ -70,13 +71,14 @@ var namespaceCreator = function () {
     //Responsive events
     this.onResizing = function (event) {
         var winW = window.innerWidth;
-        savageclose.classList.remove('back');
-
+        savageclose.classList.remove('back');        
         tilegroup.removeAttribute('style');
         if (winW <= 991) {
+            document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
             tilegroup.appendChild(svuserbox);
             tilegroup.style.width = winW;      
         } else {
+            document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
             svusrctrl.insertBefore(svuserbox, svusrctrl.childNodes[0]);       
             //remove previous opend tile dropdowns
             hideAllTiles(event);
@@ -141,11 +143,18 @@ var namespaceCreator = function () {
             }
         }    
     }
+
+    this.onScroll = function () {
+        var scrollpos = document.documentElement.scrollTop || document.body.scrollTop, bodyTop = savageMenuSlider.offsetHeight; console.log(scrollpos + ' ' + bodyTop + ' ' + bodyTop > scrollpos);
+        (scrollpos > bodyTop) ? savageMenuSlider.classList.add('scrollOn') : savageMenuSlider.classList.remove('scrollOn');
+    }
 }
 
 var transloadMenu = transloadMenu || {};
-namespaceCreator.call(transloadMenu);
+menuNamespaceCreator.call(transloadMenu);
 
 window.onload = transloadMenu.onResizing
 window.onresize = transloadMenu.onResizing;
+window.onscroll = transloadMenu.onScroll;
+
 
