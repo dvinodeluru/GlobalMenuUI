@@ -90,6 +90,7 @@ body {
     position: relative;
     padding: 6px 0;
     cursor: pointer;
+    float:left;
 }
 
 .savage-header-bar.open .sv-menu-box .sv-menu-control:after {
@@ -112,7 +113,7 @@ body {
 }
 
 .sv-menu-box .sv-menu-control.open {
-    padding: 15px 0;
+    padding: 15px 0; float:none;
 }
 
     .sv-menu-box .sv-menu-control.open .icon-bar {
@@ -418,7 +419,6 @@ body {
     }
 
         .sv-menu-box .sv-logobox, .savage-header-bar.open .sv-menu-box .sv-logobox {
-            width: 50%;
             text-align: left;
             display: inline-block;
         }
@@ -440,7 +440,17 @@ body {
             cursor: pointer;
             padding-top: 4px;
         }
-
+            .savage-header-bar .sv-menu-box .sv-menu-control:after {
+    content: attr(data-label);
+    text-transform: uppercase;
+    position: absolute;
+    top: 3px;
+    left: 50px;
+    
+}.savage-header-bar.open .sv-menu-box .sv-menu-control:after {
+    content:'CLOSE';top: 6px;
+    left: 50px;left: 50px; transform:none;
+}
     .savage-header-bar.scrollOn .sv-menu-box .sv-logobox img {
         height: 30px;
     }
@@ -544,7 +554,7 @@ body {
                     bottom: -15px;
                     left: 0;
                     right: 0;
-                    height: 15px;
+                    height: 18px;
                     display: none;
                 }
 
@@ -552,7 +562,7 @@ body {
                 .sv-user-control .sv-welcomeusr.open:after {
                     content: '';
                     position: absolute;
-                    bottom: -15px;
+                    bottom: -18px;
                     left: 50%;
                     margin: 0;
                     top: auto;
@@ -598,8 +608,7 @@ body {
     }
 
     .sv-quicklink.off,
-    .sv-welcomeusr.open .sv-overlay,
-    .sv-menu-box .sv-menu-control:after,
+    .sv-welcomeusr.open .sv-overlay,    
     .savage-header-bar.open .sv-quicklink-bar {
         display: none;
     }
@@ -639,7 +648,9 @@ body {
         position: relative;
         cursor: pointer;
     }
-
+    .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown:first-child {
+        margin-left:-10px;
+    }
         .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown > a {
             color: #fff;
             text-decoration: none!important;
@@ -655,7 +666,7 @@ body {
         background: #004990 none;
         min-width: 180px;
         border-radius: 15px;
-        padding: 15px 20px;
+        padding: 20px 30px;
         list-style: none;
         margin-top: 14px;
         left: 50%;
@@ -699,7 +710,7 @@ body {
         color: #fff;
         white-space: nowrap;
         font-weight: normal;
-        line-height: 2em;
+        line-height: 2.25em;
     }
 
         .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown .sv-quicklink-dropdown-menu a:hover {

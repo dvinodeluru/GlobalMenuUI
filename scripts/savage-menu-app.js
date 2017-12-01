@@ -79,7 +79,7 @@ var menuNamespaceCreator = function () {
             tilegroup.style.width = winW;      
         } else {
             document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
-            svusrctrl.insertBefore(svuserbox, svusrctrl.childNodes[0]);       
+            svusrctrl.appendChild(svuserbox, svusrctrl.childNodes[0]);
             //remove previous opend tile dropdowns
             hideAllTiles(event);
         }
@@ -110,14 +110,19 @@ var menuNamespaceCreator = function () {
         //     return;
         // }
         //remove previous opend tile dropdowns for Click only event
-        hideAllTiles(e);
+        //hideAllTiles(e);
+        if (!this.classList.contains("open")) {
+            for (var i = 0; i < tileItem.length; i++) { tileItem[i].classList.remove('open'); tileItem[i].querySelector('.sv-menu-dropbox').removeAttribute('style'); tileItem[i].parentElement.classList.remove('tileOn'); }
+            this.classList.add("open");
+        } else {
+            this.classList.remove("open");
+        }
         
-        console.log(winW);
-        this.classList.add("open");
         
         var childElm = this.children[1], childsgl = this.querySelectorAll('.sv-tile-subgroup').length,
             childPos = childElm.getBoundingClientRect(),
-            thisPos = this.getBoundingClientRect();
+            thisPos = this.getBoundingClientRect(),
+                tileOffset = 20 + 'px';
 
         if (winW <= 991) {
             //Slide menu in mobile
@@ -133,17 +138,19 @@ var menuNamespaceCreator = function () {
             thisPos = this.getBoundingClientRect();
             childPos = childElm.getBoundingClientRect();
             this.parentElement.style.left = 0;        
-            childElm.style.top = thisPos.top + 45 + 'px';
+            childElm.style.top = thisPos.top + 58 + 'px';
             if (this.offsetLeft < (tilegroup.clientWidth / 3)) {
-                childElm.style.left = (childsgl < 5) ? this.offsetLeft + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
+                childElm.style.left = (childsgl < 5) ? this.offsetLeft + 'px' : childElm.style.left = childElm.style.right = tileOffset;
             } else if (thisPos.right < (tilegroup.clientWidth / 3)) {
-                childElm.style.right = (childsgl < 5) ? (tilegroup.clientWidth - (this.offsetLeft + thisPos.width)) - 40 + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
+                // assign last third tiles
+                childElm.style.right = (childsgl < 5) ? (tilegroup.clientWidth - (this.offsetLeft + thisPos.width)) - tileOffset : childElm.style.left = childElm.style.right = tileOffset;
             } else {
-                childElm.style.left = (childsgl < 5) ? ((this.offsetLeft + (thisPos.width / 2)) - (childPos.width / 2)) + 'px' : childElm.style.left = childElm.style.right = 40 + 'px';
+                // assign 2nd third tiles
+                childElm.style.left = (childsgl < 5) ? ((this.offsetLeft + (thisPos.width / 2)) - (childPos.width / 2)) + 'px' : childElm.style.left = childElm.style.right = tileOffset;
             }
         }    
     }
-
+   
     this.onScroll = function () {
         var scrollpos = document.documentElement.scrollTop || document.body.scrollTop, bodyTop = savageMenuSlider.offsetHeight; console.log(scrollpos + ' ' + bodyTop + ' ' + bodyTop > scrollpos);
         (scrollpos > bodyTop) ? savageMenuSlider.classList.add('scrollOn') : savageMenuSlider.classList.remove('scrollOn');
