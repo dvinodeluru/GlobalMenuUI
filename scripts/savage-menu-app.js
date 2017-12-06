@@ -26,7 +26,8 @@ var menuNamespaceCreator = function () {
         touchevent = '';
 
     //Burger Menu event
-    savageclose.addEventListener('click', function () {
+    savageclose.addEventListener('click', function (e) {
+        e.stopPropagation();
         if (!this.classList.contains('back')) {
             this.classList.toggle('open');
             savageMenuSlider.classList.toggle('open');
@@ -35,7 +36,9 @@ var menuNamespaceCreator = function () {
             document.body.classList.toggle('scrolloff');
             svQuickLink.classList.remove('on');
             document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
+            tilegroup.classList.toggle('anim');
         } else {
+            
             this.classList.remove('back');
             tilegroup.style.left = 0;
             this.setAttribute('data-label', 'Menu');
@@ -43,12 +46,14 @@ var menuNamespaceCreator = function () {
     });
 
     //user control dropdown
-    svuserbox.addEventListener('click', function (event) {
+    svuserbox.addEventListener('click', function (e) {
+        e.stopPropagation();
         this.classList.toggle('open');
     });
 
     //quick link
-    svQuickLink.addEventListener('click', function () {
+    svQuickLink.addEventListener('click', function (e) {
+        e.stopPropagation();
         quicklinkbar.classList.toggle('open');
         this.classList.toggle('on');
         document.body.style.paddingTop = savageMenuSlider.offsetHeight + 'px';
@@ -138,7 +143,7 @@ var menuNamespaceCreator = function () {
             thisPos = this.getBoundingClientRect();
             childPos = childElm.getBoundingClientRect();
             this.parentElement.style.left = 0;        
-            childElm.style.top = thisPos.top + 58 + 'px';
+            (savageMenuSlider.classList.contains('scrollOn')) ? childElm.style.top = thisPos.top + 88 + 'px' : childElm.style.top = thisPos.top + 58 + 'px';
             if (this.offsetLeft < (tilegroup.clientWidth / 3)) {
                 childElm.style.left = (childsgl < 5) ? this.offsetLeft + 'px' : childElm.style.left = childElm.style.right = tileOffset;
             } else if (thisPos.right < (tilegroup.clientWidth / 3)) {

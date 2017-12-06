@@ -90,7 +90,7 @@ body {
     position: relative;
     padding: 6px 0;
     cursor: pointer;
-    float:left;
+    float: left;
 }
 
 .savage-header-bar.open .sv-menu-box .sv-menu-control:after {
@@ -106,6 +106,7 @@ body {
     display: block;
     border-bottom: 2px solid #FFF;
     width: 25px;
+    transition: all 0.2s;
 }
 
 .sv-menu-box .sv-menu-control .icon-bar:nth-child(2n) {
@@ -113,7 +114,8 @@ body {
 }
 
 .sv-menu-box .sv-menu-control.open {
-    padding: 15px 0; float:none;
+    padding: 15px 0;
+    float: none;
 }
 
     .sv-menu-box .sv-menu-control.open .icon-bar {
@@ -265,7 +267,9 @@ body {
     background-blend-mode: color-dodge;
     height: calc(100% - 70px);
 }
-
+.savage-header-bar.scrollOn .sv-menu-slider {
+    height: calc(100% - 40px);
+}
 .savage-header-bar.open .sv-menu-slider {
     overflow: auto;
     display: block;
@@ -278,8 +282,6 @@ body {
 
 .sv-menu-slider .sv-menu-tilegroup {
     position: relative;
-    left: 0;
-    transition: left 0.2s;
 }
 
     .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile {
@@ -300,12 +302,13 @@ body {
             height: 34px;
             display: inline-block;
             vertical-align: bottom;
-            margin-right: 30px;
             margin-left: -35px;
+            position:absolute;top:14px;
         }
 
         .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile > .sv-tile-title > span {
             background: transparent url() no-repeat 15px 50%;
+            padding-left:40px;
         }
 
             .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile > .sv-tile-title > span:before {
@@ -438,19 +441,24 @@ body {
             width: 25px;
             height: 25px;
             cursor: pointer;
-            padding-top: 4px;
+            padding-top: 10px;
         }
-            .savage-header-bar .sv-menu-box .sv-menu-control:after {
-    content: attr(data-label);
-    text-transform: uppercase;
-    position: absolute;
-    top: 3px;
-    left: 50px;
-    
-}.savage-header-bar.open .sv-menu-box .sv-menu-control:after {
-    content:'CLOSE';top: 6px;
-    left: 50px;left: 50px; transform:none;
-}
+
+    .savage-header-bar .sv-menu-box .sv-menu-control:after {
+        content: attr(data-label);
+        text-transform: uppercase;
+        position: absolute;
+        top: 8px;
+        left: 50px;
+    }
+
+    .savage-header-bar.open .sv-menu-box .sv-menu-control:after {
+        content: 'CLOSE';
+        top: 6px;
+        left: 50px;
+        transform: none;
+    }
+
     .savage-header-bar.scrollOn .sv-menu-box .sv-logobox img {
         height: 30px;
     }
@@ -466,8 +474,7 @@ body {
     }
 
     .sv-user-control {
-        font-size: 13px;
-        margin-top: 2px;
+        margin-top: 4px;
     }
 
     .sv-welcomeusr:before {
@@ -483,17 +490,18 @@ body {
         padding-top: 60px;
         background-image: linear-gradient(to bottom, #004990 0%, #004990 100%);
     }
-
+   
         .sv-menu-slider .sv-menu-tilegroup {
             list-style: none;
             padding: 0 30px;
-            left: auto;
-            transition: none;
             display: inline-block;
-            margin: 0 auto;
+            margin: -15px auto 0;
+            transition: all  0.4s;
         }
 
-
+    .savage-header-bar.open .sv-menu-slider .sv-menu-tilegroup.anim {
+        margin-top:0; 
+    }
             .sv-menu-slider .sv-menu-tilegroup.tileOn {
                 padding: 0 10px;
             }
@@ -523,7 +531,7 @@ body {
                         display: inline-block;
                         position: relative;
                         background-position: 50% 40px;
-                        background-size: 55px;
+                        background-size: 55px; padding-left:0;
                     }
 
                 .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.open > .sv-tile-title,
@@ -536,6 +544,7 @@ body {
                     height: 54px;
                     display: block;
                     margin: 0 auto;
+                    position:static;
                 }
 
                 .sv-menu-slider .sv-menu-tilegroup .sv-menu-tile.sv-menu-subgroup > .sv-tile-title > span::after {
@@ -584,7 +593,7 @@ body {
         }
 
     .savage-header-bar.open .sv-menu-slider {
-        padding-bottom: 0;
+        padding-bottom: 0;       
     }
 
     .sv-welcomeusr {
@@ -603,12 +612,8 @@ body {
             font-size: 14px;
         }
 
-    .savage-header-bar.open .sv-menu-box .sv-welcomeusr {
-        padding-right: 15px;
-    }
-
     .sv-quicklink.off,
-    .sv-welcomeusr.open .sv-overlay,    
+    .sv-welcomeusr.open .sv-overlay,
     .savage-header-bar.open .sv-quicklink-bar {
         display: none;
     }
@@ -632,91 +637,64 @@ body {
             padding: 0;
         }
 
-    .sv-quicklink-bar .sv-quicklink-menu {
+    .sv-quicklink-bar ul {
         list-style: none;
         padding: 0;
         margin: 15px 0 -15px;
     }
 
-    .savage-header-bar.scrollOn .sv-quicklink-bar .sv-quicklink-menu {
-        margin: 5px 0 -5px;
-    }
-
-    .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown {
-        display: inline-block;
-        margin: 0 15px 0 0;
-        position: relative;
-        cursor: pointer;
-    }
-    .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown:first-child {
-        margin-left:-10px;
-    }
-        .sv-quicklink-bar .sv-quicklink-menu > .sv-quicklink-dropdown > a {
-            color: #fff;
-            text-decoration: none!important;
-            display: block;
-            padding: 5px 10px;
-            font-weight: normal;
-            white-space: nowrap;
+        .sv-quicklink-bar ul > li {
+            display: inline-block;
+            margin: 0 15px 0 0;
+            position: relative;
+        }
+        .sv-quicklink-bar ul > li:first-child {
+            margin-left:-15px;
         }
 
-    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown > .sv-quicklink-dropdown-menu {
+            .sv-quicklink-bar ul > li > a {
+                color: #fff;
+                text-decoration: none!important;
+                display: block;
+                padding: 5px 10px;
+                font-weight: normal;
+            }
+
+    .sv-quicklink-bar li > ul {
         display: none;
         position: absolute;
         background: #004990 none;
         min-width: 180px;
-        border-radius: 15px;
-        padding: 20px 30px;
-        list-style: none;
-        margin-top: 14px;
-        left: 50%;
-        transform: translate(-50%,0);
-    }
-
-    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:first-child > .sv-quicklink-dropdown-menu {
-        left: 0%;
-        transform: translate(0%,0);
-    }
-
-    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:hover:after {
-        content: '';
-        position: absolute;
-        bottom: -15px;
-        left: 0;
-        right: 0;
-        height: 15px;
-    }
-
-    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:hover:before {
-        content: '';
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
         margin: 0;
-        display: block;
-        right: auto;
-        transform: translate(-50%, 0);
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-        border-bottom: 15px solid #004990;
     }
 
-    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown:hover .sv-quicklink-dropdown-menu {
-        display: block;
-    }
-
-    .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown .sv-quicklink-dropdown-menu a {
-        display: block;
-        color: #fff;
-        white-space: nowrap;
-        font-weight: normal;
-        line-height: 2.25em;
-    }
-
-        .sv-quicklink-bar .sv-quicklink-menu .sv-quicklink-dropdown .sv-quicklink-dropdown-menu a:hover {
-            text-decoration: none;
+        .sv-quicklink-bar li > ul > li > ul {
+            top: 0;
+            left: 100%;
+            margin-top: 0;
+        }
+        .sv-quicklink-bar li > ul > li:first-child {
+            margin-left:0;
+        }
+        .sv-quicklink-bar li > ul > li,
+        .sv-quicklink-bar li:hover > ul {
+            display: block;
+            margin: 0;
         }
 
+            .sv-quicklink-bar li > ul > li > a:hover {
+                background: #009ddc none;
+            }
+
+    .sv-quicklink-dropdown-submenu > a:after {
+        content: "\203A";
+        float: right;
+        width: 0;
+        height: 0;
+        margin-top: -10px;
+        margin-right: 10px;
+        font-size: 24px;
+    }
     .sv-welcomeuser:before {
         content: 'Hi, ';
         font-size: 26px;
