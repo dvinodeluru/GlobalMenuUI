@@ -90,11 +90,6 @@ var menuNamespaceCreator = function () {
         }
     }
 
-    // Turn off all dropdown when hovering over items with no drowpdownsOnly Click Event
-    // for (var i = 0; i < tilesWithoutSubgroups.length; i++) {
-    //     tilesWithoutSubgroups[i].addEventListener("mouseover", hideAllTiles, false);
-    // }
-
     //Only Click Event
     for (var i = 0; i < tileItem.length; i++) {
     //    tileItem[i].addEventListener("mouseover", hideAllTiles, false);
@@ -109,13 +104,7 @@ var menuNamespaceCreator = function () {
     function showTile(e) {
         e.stopPropagation();
         var winW = window.innerWidth;
-        
-        // // ignore mousover on small devices [no longer needed -- no longer using mouseover]
-        // if(winW <= 991 && e.type == "mouseover"){
-        //     return;
-        // }
-        //remove previous opend tile dropdowns for Click only event
-        //hideAllTiles(e);
+     
         if (!this.classList.contains("open")) {
             for (var i = 0; i < tileItem.length; i++) { tileItem[i].classList.remove('open'); tileItem[i].querySelector('.sv-menu-dropbox').removeAttribute('style'); tileItem[i].parentElement.classList.remove('tileOn'); }
             this.classList.add("open");
@@ -140,10 +129,10 @@ var menuNamespaceCreator = function () {
             //Show hide dropdown in Desktop
             this.parentElement.classList.add('tileOn');
             // recalculate position of tile after tile is selected (account for addition of scrollbar)
-            thisPos = this.getBoundingClientRect();
+            thisPos = this.getBoundingClientRect(); console.log(svmenuslider.scrollTop);
             childPos = childElm.getBoundingClientRect();
             this.parentElement.style.left = 0;        
-            (savageMenuSlider.classList.contains('scrollOn')) ? childElm.style.top = thisPos.top + 88 + 'px' : childElm.style.top = thisPos.top + 58 + 'px';
+            (savageMenuSlider.classList.contains('scrollOn')) ? childElm.style.top = (thisPos.top + svmenuslider.scrollTop) + 88 + 'px' : childElm.style.top = (thisPos.top + svmenuslider.scrollTop) + 58 + 'px';
             if (this.offsetLeft < (tilegroup.clientWidth / 3)) {
                 childElm.style.left = (childsgl < 5) ? this.offsetLeft + 'px' : childElm.style.left = childElm.style.right = tileOffset;
             } else if (thisPos.right < (tilegroup.clientWidth / 3)) {
